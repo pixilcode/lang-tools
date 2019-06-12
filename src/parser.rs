@@ -1,4 +1,4 @@
-pub mod parser_functions;
+pub mod basic_functions;
 
 use crate::scanner;
 use std::ops::Shr;
