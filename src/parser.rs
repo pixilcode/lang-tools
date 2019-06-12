@@ -29,8 +29,13 @@ impl<S> Parser<S, bool>
 where S: 'static + scanner::Scanner {
     pub fn or(self, other: Self) -> Self {
         self >> |a|
-        other >> move |b|
-        Parser::result(a || b)
+        if !a {
+            other >> move |b|
+            Parser::result(b)
+        } else {
+            Parser::result(true)
+        }
+        
     }
     
     pub fn if_else<T>(self, t: Parser<S, T>, f: Parser<S, T>) -> Parser<S, T> {
