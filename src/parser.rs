@@ -91,7 +91,7 @@ where V: FnOnce(T) -> Parser<S, U>,
     }
 }
 
-fn multi_if<S, T>(mut branches: Vec<(Parser<S, bool>, Parser<S, T>)>, otherwise: Parser<S, T>)
+pub fn multi_if<S, T>(mut branches: Vec<(Parser<S, bool>, Parser<S, T>)>, otherwise: Parser<S, T>)
 -> Parser<S, T>
 where S: 'static + scanner::Scanner {
     match branches.pop() {
